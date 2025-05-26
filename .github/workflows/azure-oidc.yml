@@ -13,6 +13,7 @@ permissions:
 
 jobs:
   azure-test:
+    name: Azure Authentication Test
     runs-on: ubuntu-latest
     steps:
       - name: Azure Login
