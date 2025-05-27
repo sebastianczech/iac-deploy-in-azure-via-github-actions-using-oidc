@@ -33,7 +33,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_app_name"></a> [app\_name](#input\_app\_name) | The display name for the OIDC application | `string` | `"oidc"` | no |
+| <a name="input_app_name"></a> [app\_name](#input\_app\_name) | The display name for the OIDC application | `string` | `"oidc-tf"` | no |
 | <a name="input_github_branch"></a> [github\_branch](#input\_github\_branch) | GitHub branch name | `string` | `"main"` | no |
 | <a name="input_github_repo"></a> [github\_repo](#input\_github\_repo) | GitHub repository in the format 'owner/repo' | `string` | `"sebastianczech/iac-deploy-in-azure-via-github-actions-using-oidc"` | no |
 | <a name="input_subscription_id"></a> [subscription\_id](#input\_subscription\_id) | The Azure subscription ID where the role assignment will be created | `string` | n/a | yes |

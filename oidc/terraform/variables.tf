@@ -1,7 +1,7 @@
 variable "app_name" {
   description = "The display name for the OIDC application"
   type        = string
-  default     = "oidc"
+  default     = "oidc-tf"
 }
 
 variable "github_repo" {
