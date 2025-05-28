@@ -50,6 +50,37 @@ C4Context
 
 ## Create app registration and service principal
 
+### Prerequisites
+
+```bash
+az login
+```
+
+### Bicep
+
+```bash
+cd oidc/bicep
+
+az deployment sub what-if \
+  --location westeurope \
+  --name oidc-bicep \
+  --template-file main.bicep \
+  --parameters parameters.json
+
+az deployment sub create \
+  --location westeurope \
+  --name oidc-bicep \
+  --template-file main.bicep \
+  --parameters parameters.json
+```
+
+Links:
+* [Bicep best practices](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/best-practices)
+* [Example - subscription role assignment](https://github.com/Azure/azure-quickstart-templates/blob/master/subscription-deployments/subscription-role-assignment/main.bicep)
+* [Role assignments in Bicep](https://learn.microsoft.com/en-gb/azure/templates/microsoft.authorization/roleassignments?pivots=deployment-language-bicep)
+
+### Terraform
+
 ```bash
 cd oidc/terraform
 
