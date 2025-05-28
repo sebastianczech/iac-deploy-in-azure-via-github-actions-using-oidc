@@ -1,4 +1,4 @@
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -47,4 +47,4 @@ No modules.
 | <a name="output_federated_credential_id"></a> [federated\_credential\_id](#output\_federated\_credential\_id) | ID of the federated credential created for GitHub Actions |
 | <a name="output_github_oidc_config"></a> [github\_oidc\_config](#output\_github\_oidc\_config) | GitHub OIDC configuration details |
 | <a name="output_tenant_id"></a> [tenant\_id](#output\_tenant\_id) | Tenant ID of the Azure AD application (use as AZURE\_TENANT\_ID in GitHub secrets) |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->
