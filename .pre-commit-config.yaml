@@ -12,6 +12,10 @@ repos:
     rev: v8.21.0
     hooks:
       - id: gitleaks
+- repo: https://github.com/Azure4DevOps/check-azure-bicep
+  rev: v0.4.1
+  hooks:
+    - id: check-azure-bicep
 -   repo: https://github.com/antonbabenko/pre-commit-terraform
     rev: v1.92.1
     hooks:
