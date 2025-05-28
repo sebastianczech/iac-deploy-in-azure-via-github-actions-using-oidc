@@ -17,6 +17,9 @@ jobs:
 
       - name: Set up PowerShell
         uses: actions/setup-pwsh@v1
+        with:
+          pwsh-version: '7.4.1'
+          github-token: ${{ github.token }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
