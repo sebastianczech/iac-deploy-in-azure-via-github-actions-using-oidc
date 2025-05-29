@@ -1,3 +1,7 @@
+// based on: https://github.com/microsoftgraph/msgraph-bicep-types/blob/main/quickstart-templates/create-fic-for-github-actions/main.bicep
+
+extension microsoftGraphV1
+
 targetScope = 'subscription'
 
 @description('Name of the Azure AD application')
@@ -9,42 +13,25 @@ param githubRepo string
 @description('GitHub branch name')
 param githubBranch string
 
-resource application 'Microsoft.AzureActiveDirectory/applications@2021-09-30' = {
-  name: appName
-  properties: {
-    signInAudience: 'AzureADMyOrg'
-  }
-}
+var githubOIDCProvider = 'https://token.actions.githubusercontent.com'
+var microsoftEntraAudience = 'api://AzureADTokenExchange'
+var gitHubActionsFederatedIDentitySubject = 'repo:${githubRepo}:ref:refs/heads/${githubBranch}'
 
-resource servicePrincipal 'Microsoft.AzureActiveDirectory/servicePrincipals@2021-09-30' = {
-  name: application.name
-  properties: {
-    appId: application.properties.appId
-    appRoleAssignmentRequired: false
-  }
-}
+resource application 'Microsoft.Graph/applications@v1.0' = {
+  uniqueName: appName
+  displayName: appName
+  signInAudience: 'AzureADMyOrg'
 
-resource federatedCredential 'Microsoft.AzureActiveDirectory/applications/federatedIdentityCredentials@2021-09-30' = {
-  name: 'github-actions'
-  parent: application
-  properties: {
-    description: 'GitHub Actions OIDC'
+  resource githubFederatedIdentityCredential 'federatedIdentityCredentials@v1.0' = {
+    name: '${application.uniqueName}/githubFederatedIdentityCredential'
     audiences: [
-      'api://AzureADTokenExchange'
+      microsoftEntraAudience
     ]
-    issuer: 'https://token.actions.githubusercontent.com'
-    subject: 'repo:${githubRepo}:ref:refs/heads/${githubBranch}'
+    issuer: githubOIDCProvider
+    subject: gitHubActionsFederatedIDentitySubject
   }
 }
 
-resource roleAssignment 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
-  name: guid(subscription().id, servicePrincipal.id, 'Reader')
-  properties: {
-    principalId: servicePrincipal.id
-    roleDefinitionId: subscriptionResourceId(
-      'Microsoft.Authorization/roleDefinitions',
-      'acdd72a7-3385-48ef-bd42-f606fba81ae7'
-    ) // Reader role
-    principalType: 'ServicePrincipal'
-  }
+resource servicePrincipal 'Microsoft.Graph/servicePrincipals@v1.0' = {
+  appId: application.appId
 }
