@@ -14,6 +14,7 @@ param githubBranch string
 var githubOIDCProvider = 'https://token.actions.githubusercontent.com'
 var microsoftEntraAudience = 'api://AzureADTokenExchange'
 var gitHubActionsFederatedIDentitySubject = 'repo:${githubRepo}:ref:refs/heads/${githubBranch}'
+var roleAssignmentName = guid(subscription().id, appName, 'Reader')
 
 resource application 'Microsoft.Graph/applications@v1.0' = {
   uniqueName: appName
@@ -32,6 +33,15 @@ resource application 'Microsoft.Graph/applications@v1.0' = {
 
 resource servicePrincipal 'Microsoft.Graph/servicePrincipals@v1.0' = {
   appId: application.appId
+}
+
+resource readerRoleAssignment 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
+  name: roleAssignmentName
+  properties: {
+    principalId: servicePrincipal.id
+    roleDefinitionId: resourceId('Microsoft.Authorization/roleDefinitions', 'acdd72a7-3385-48ef-bd42-f606fba81ae7') // Reader role
+    principalType: 'ServicePrincipal'
+  }
 }
 
 output clientId string = application.appId
