@@ -78,6 +78,9 @@ Links:
 * [Bicep best practices](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/best-practices)
 * [Example - subscription role assignment](https://github.com/Azure/azure-quickstart-templates/blob/master/subscription-deployments/subscription-role-assignment/main.bicep)
 * [Role assignments in Bicep](https://learn.microsoft.com/en-gb/azure/templates/microsoft.authorization/roleassignments?pivots=deployment-language-bicep)
+* [Quickstart: Create and deploy your first Bicep file with Microsoft Graph resources](https://learn.microsoft.com/en-gb/graph/templates/bicep/quickstart-create-bicep-interactive-mode?tabs=CLI)
+* [msgraph-bicep-types - quickstart-templates](https://github.com/microsoftgraph/msgraph-bicep-types/tree/main/quickstart-templates)
+* [Configure federated identity credential for GitHub Actions](https://github.com/microsoftgraph/msgraph-bicep-types/blob/main/quickstart-templates/create-fic-for-github-actions/README.md)
 
 ### Terraform
 
