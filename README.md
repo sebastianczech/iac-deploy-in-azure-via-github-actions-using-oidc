@@ -72,6 +72,8 @@ az deployment sub create \
   --name oidc-bicep \
   --template-file main.bicep \
   --parameters parameters.json
+
+az deployment sub show --name oidc-bicep --query 'properties.outputs'
 ```
 
 Links:
