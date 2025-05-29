@@ -84,6 +84,14 @@ Links:
 * [msgraph-bicep-types - quickstart-templates](https://github.com/microsoftgraph/msgraph-bicep-types/tree/main/quickstart-templates)
 * [Configure federated identity credential for GitHub Actions](https://github.com/microsoftgraph/msgraph-bicep-types/blob/main/quickstart-templates/create-fic-for-github-actions/README.md)
 
+Tips:
+
+```bash
+az role definition list --query "[].{roleName:roleName, roleId:id}" -o table
+
+az role definition list --name "Reader" --query '[].id' -o tsv
+```
+
 ### Terraform
 
 ```bash
